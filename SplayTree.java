@@ -144,22 +144,22 @@ public class SplayTree<T extends Comparable<? super T>> {
     		}
     	}
     }
-    public SplayNode<T> _printRecToRoot(SplayNode<T> cur, T value) 
+    public void _printRecToRoot(SplayNode<T> cur, T value) 
     {
     	if(value.compareTo(cur.getValue()) ==0) 
     	{
     		System.out.print(cur.getValue() + ",");
-    		return cur;
+    		return;
     	}
     	if(value.compareTo(cur.getValue()) < 0)
-    		cur.leftChild = _printRecToRoot(cur.leftChild, value);
+    		_printRecToRoot(cur.leftChild, value);
     	else 
-    		cur.rightChild = _printRecToRoot(cur.rightChild, value);
+    		_printRecToRoot(cur.rightChild, value);
     	if(cur.equals(root))
     		System.out.println(cur.getValue());
     	else	
     		System.out.print(cur.getValue() + ",");
-    	return null;
+    	return;
     }
     public void printWayBack(T value) 
     {
