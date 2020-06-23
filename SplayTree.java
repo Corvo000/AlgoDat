@@ -94,7 +94,29 @@ public class SplayTree<T extends Comparable<? super T>> {
     	node.leftChild = tmp.rightChild;
     	tmp.rightChild = node;
         return tmp;
-    }    
+    }
+    public void printWayToNodeRec(T value) 
+    {
+    	if(!isIn(value))
+    		return;
+    	_printWayToNodeRec(root, value);
+    }
+    public void _printWayToNodeRec(SplayNode<T> cur,T value) 
+    {
+    	
+    	if(value.compareTo(cur.getValue()) == 0)
+    	{
+    		System.out.print(cur.getValue());
+    		return;
+    	}
+		else
+			System.out.print(cur.getValue() + ",");
+    	if(value.compareTo(cur.getValue()) < 0)
+    		_printWayToNodeRec(cur.leftChild, value);
+    	else		
+    		_printWayToNodeRec(cur.rightChild, value);
+    	return;
+    }
     public void printWayToNode(T value) 
     {
     	//Ausgabe vom Knoten zum ELement
