@@ -1,0 +1,63 @@
+public class AlgodatRec3
+{
+    public static void main(String[] args)
+    {
+        int[] arr = new int[]{7, 4, 5, 6, 8, 9, 10, 1};
+        System.out.println(Arrays.toString(arr));
+        qsByDF(arr,0,arr.length-1);
+        System.out.println(Arrays.toString(arr));
+    }
+    public static void qsByDF(int [] arr, int l, int r)
+    {
+        if(l<r)
+        {
+            int []p = threeWayPartRec(arr,l,r);
+            qsByDF(arr,l,p[0]);
+            qsByDF(arr,p[1],r);
+        }
+    }
+    private static int[] threeWayPartRec(int[] arr, int l, int r)
+    {
+        int p = arr[(r+l)/2];
+        int sm = l;
+        int eq = l;
+        int lg = r;
+        return threeway(arr,sm,eq,lg,p);
+    }
+    private static int[] threeway(int[] arr, int sm, int eq, int lg, int p)
+    {
+        if(eq <= lg)
+        {
+            if(arr[eq] < p)
+                swap(arr,eq++,sm++);
+            else if(arr[eq] == p)
+                eq++;
+            else
+                swap(arr,eq,lg--);
+            //System.out.println(Arrays.toString(arr));
+            return threeway(arr,sm,eq,lg,p);
+        }
+        int n[] = new int [] {sm-1,lg+1};
+        return n;
+    }
+    public static void swap(int [] arr,int i, int j)
+    {
+        int tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
+    }
+    private static int[] threewayIter(int[] arr, int sm, int eq, int lg, int p)
+    {
+        while(eq <= lg)
+        {
+            if(arr[eq] < p)
+                swap(arr,eq++,sm++);
+            else if(arr[eq] == p)
+                eq++;
+            else
+                swap(arr,eq,lg--);
+        }
+        int n[] = new int [] {sm-1,lg+1};
+        return n;
+    }
+}
